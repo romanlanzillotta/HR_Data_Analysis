@@ -1,0 +1,8 @@
+type: framework
+content:
+- Load the data and modify the indexes
+- Merge everything
+- Get the insights
+- Aggregate the data
+- Draw up pivot tables
+current_task: 4

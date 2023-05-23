@@ -1,0 +1,48 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>Your datasets are ready for merging! It will make data analysis much more straightforward.</p>
+<p>Use concatenation to generate a dataset with information from both offices. Use the left merging by index to merge the previously created dataset with the HR's dataset. When joining, generate a column containing information about where each row came from. Keep only those columns that are present in both datasets.</p>
+<h5 id="objectives">Objectives</h5>
+<p>It's time to create one comprehensive dataset! The first three steps follow Stage 1:</p>
+<ol>
+<li>Load all three datasets. Remember, data is stored in the <em>XML</em> format;</li>
+<li>Explore the data — check the axes, get the shapes of the DataFrames, use <code class="java">df.info()</code> to check whether there are null values and review the data types;</li>
+<li>Reindex all three datasets in the same way as in the previous stage;</li>
+<li>Use the <code class="java">concat()</code> function from <code class="java">pandas</code> to generate a unified dataset for offices A and B;</li>
+<li>Use <code class="java">df.merge()</code> to carry out the left merging of the unified office dataset with HR's dataset. Merge both datasets by index. For the final table, leave only those employees whose data is contained in both datasets. Set <code class="java">indicator=True</code> in <code class="java">df.merge()</code>;</li>
+<li>Drop the <code class="java">employee_office_id</code>, <code class="java">employee_id</code> columns and the column that contains a row source;</li>
+<li>Sort the final dataset by index and print two Python lists: the final DataFrame index and the column names. Output each list on a separate line.</li>
+</ol>
+<h5 id="example">Example</h5>
+<ul>
+<li><em>Office A data (most of the columns are omitted)</em>
+<pre><code class="language-no-highlight">       number_project  employee_office_id
+A2                  5                   2
+A4                  5                   4
+A6                  2                   6</code></pre>
+</li>
+<li><em>Office B data (most of the columns are omitted)</em>
+<pre><code class="language-no-highlight">       number_project  employee_office_id
+B1                  6                   1
+B3                  4                   3
+B5                  5                   5</code></pre>
+</li>
+<li><em>HR data (most of the columns are omitted)</em>
+<pre><code class="language-no-highlight">             satisfaction_level employee_id
+employee_id
+A1                         0.38          A1
+A4                         0.72          A4
+B1                         0.35          B1
+B5                         0.91          B5</code></pre>
+</li>
+<li><em>The resulting dataset (most of the columns are omitted)</em>
+<pre><code class="language-no-highlight">    number_project  satisfaction_level
+A4               5                0.72
+B1               6                0.35
+B5               5                0.91</code></pre>
+</li>
+</ul>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">['A4', 'B1', 'B5']
+['number_project', 'satisfaction_level']</code></pre>
+</div>

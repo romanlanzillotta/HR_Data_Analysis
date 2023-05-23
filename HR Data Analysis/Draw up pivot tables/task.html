@@ -1,0 +1,74 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>The HR boss desperately needs your pivot tables for their report.</p>
+<ol>
+<li>The first pivot table is a table that displays departments as rows and the employee's current status (the <code class="java">left</code> column) and their salary level (the <code class="java">salary</code> column) as columns. The values should be the median number of hours employees have worked per month (the <code class="java">average_monthly_hours</code> columns). In the table, the HR boss wants to see only those departments where either one is true:
+
+	<ul>
+<li>For the currently employed: the median value of the working hours of high-salary employees is smaller than the hours of the medium-salary employees, OR:</li>
+<li>For the employees who left: the median value of working hours of low-salary employees is smaller than the hours of high-salary employees</li>
+</ul>
+</li>
+<li>The second pivot table is a table where each row is an employee's time in the company (<code class="java">time_spend_company</code>); the columns indicate whether an employee has had any promotion (the <code class="java">promotion_last_5years</code> column). The values are min, max, the mean of the last evaluation score and the satisfaction level (the <code class="java">satisfaction_level</code> and <code class="java">last_evaluation</code> columns). Filter the table by the following rule: select only those rows where the last mean evaluation score is higher for those who didn't have any promotion than those who had.</li>
+</ol>
+<h5 id="objectives">Objectives</h5>
+<p>Steps 1-7 are the same as steps from the previous stage. This stage requires completing the following steps:</p>
+<ol>
+<li>Load all three datasets. Remember, data is stored in the <em>XML</em> format;</li>
+<li>Explore the data — check the axes, get the shapes of the DataFrames, use <code class="java">df.info()</code> to check whether there are null values and review the data types;</li>
+<li>Reindex all three datasets in the same way as in the previous stage;</li>
+<li>Use the <code class="java">concat()</code> function from <code class="java">pandas</code> to generate a unified dataset for offices A and B;</li>
+<li>Use <code class="java">df.merge()</code> to carry out the left merging of the unified office dataset with HR's dataset. Merge both datasets by index. For the final table, leave only those employees whose data is contained in both datasets. Set <code class="java">indicator=True</code> in <code class="java">df.merge()</code>;</li>
+<li>Drop the <code class="java">employee_office_id</code>, <code class="java">employee_id</code> columns and the column that contains a row source;</li>
+<li>Sort the final dataset by index;</li>
+<li>Use <code class="java">df.pivot_table()</code> to generate the pivot tables;</li>
+<li>Use searching methods to subset the data. Round all the numbers to two decimals. To round numbers to the second decimal place, apply the <code class="java">round(2)</code> method to a DataFrame;</li>
+<li>Output the results as two dictionaries.</li>
+<li>Print the resulting DataFrame as a Python dictionary. To do so, use the <code class="java">to_dict()</code> method.</li>
+</ol>
+<h5 id="example">Example</h5>
+<p><em>Input: a merged DataFrame</em></p>
+<p><em>Output (the answer is for reference only; the actual values may differ):</em></p>
+<p><em>Resulting DataFrames:</em></p>
+<pre><code class="language-no-highlight">left           0.0                  1.0
+salary        high    low medium   high    low medium
+Department
+IT           185.0  177.5  196.0  155.0  235.0  197.0
+management   203.0  199.0  201.0  231.0  155.5  235.0</code></pre>
+<pre><code class="language-no-highlight">              max                                           mean        \
+  last_evaluation       satisfaction_level       last_evaluation
+                0     1                  0     1               0     1
+2             1.0  0.99                1.0  0.94            0.72  0.69
+7             1.0  0.90                1.0  0.94            0.77  0.75
+
+                                       min
+  satisfaction_level       last_evaluation       satisfaction_level
+                   0     1               0     1                  0     1
+2               0.70  0.65            0.37  0.52               0.09  0.29
+7               0.48  0.60            0.36  0.42               0.09  0.15  </code></pre>
+<p><em>Resulting dictionaries:</em></p>
+<pre><code class="language-no-highlight">{(0.0, 'high'): {'IT': 185.0,
+  'management': 203.0},
+ (0.0, 'low'): {'IT': 177.0,
+  'management': 199.0},
+ (0.0, 'medium'): {'IT': 196.0,
+  'management': 201.0},
+ (1.0, 'high'): {'IT': 155.0,
+  'management': 231.0},
+ (1.0, 'low'): {'IT': 235.0,
+  'management': 155.0},
+ (1.0, 'medium'): {'IT': 197.0,
+  'management': 235.0}}</code></pre>
+<pre><code class="language-no-highlight">{('max', 'last_evaluation', 0): {2: 1.0, 7: 1.0},
+ ('max', 'last_evaluation', 1): {2: 0.99, 7: 0.9},
+ ('max', 'satisfaction_level', 0): {2: 1.0, 7: 1.0},
+ ('max', 'satisfaction_level', 1): {2: 0.94, 7: 0.94},
+ ('mean', 'last_evaluation', 0): {2: 0.72, 7: 0.77},
+ ('mean', 'last_evaluation', 1): {2: 0.69, 7: 0.75},
+ ('mean', 'satisfaction_level', 0): {2: 0.7, 7: 0.48},
+ ('mean', 'satisfaction_level', 1): {2: 0.65, 7: 0.6},
+ ('min', 'last_evaluation', 0): {2: 0.37, 7: 0.36},
+ ('min', 'last_evaluation', 1): {2: 0.52, 7: 0.42},
+ ('min', 'satisfaction_level', 0): {2: 0.09, 7: 0.09},
+ ('min', 'satisfaction_level', 1): {2: 0.29, 7: 0.15}}</code></pre>
+</div>

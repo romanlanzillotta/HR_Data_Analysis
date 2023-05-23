@@ -1,0 +1,111 @@
+<div class="step-text">
+<h5 id="theory">Theory</h5>
+<p>In this project, you'll be working with datasets represented in the <em>XML</em><strong> </strong>format. XML is <strong>eXtensible Markup Language</strong>, one of the most popular formats for storing and exchanging data. Let's look at an example:</p>
+<pre><code class="language-xml">&lt;data&gt;
+  &lt;row&gt;
+    &lt;number_project&gt;5&lt;/number_project&gt;
+    &lt;average_monthly_hours&gt;262&lt;/average_monthly_hours&gt;
+    &lt;time_spend_company&gt;6&lt;/time_spend_company&gt;
+    &lt;Work_accident&gt;0&lt;/Work_accident&gt;
+    &lt;promotion_last_5years&gt;0&lt;/promotion_last_5years&gt;
+    &lt;Department&gt;sales&lt;/Department&gt;
+    &lt;salary&gt;medium&lt;/salary&gt;
+    &lt;employee_office_id&gt;2&lt;/employee_office_id&gt;
+  &lt;/row&gt;</code></pre>
+<p>Yeah... Not really user-friendly, right? The good news is that <code class="language-xml">pandas</code> has a function to read and process the <em>XML</em> format in one code line. </p>
+<h5 id="description">Description</h5>
+<p>Your HR boss gave you three datasets. The first two are from different offices: A and B (<em>A_office_data.xml</em> and <em>B_office_data.xml</em>, respectively); the third is the HR's dataset (<em>hr_data.xml</em>). The guy wants you to investigate the data. The first thing you need to do is to check and reindex it for further stages. </p>
+<p>The HR boss has also supplied you with some descriptions: </p>
+<ol>
+<li><em>A_office_data.xml</em> and <em>B_office_data.xml</em>:
+
+	<ul>
+<li><code class="language-xml">number_project</code>: number of projects an employee has worked on;</li>
+<li><code class="language-xml">average_monthly_hours</code>: typical workload per month in hours;</li>
+<li><code class="language-xml">time_spend_company</code>: how many years an employee has worked in the company;</li>
+<li><code class="language-xml">Work_accident</code>: whether an employee has had an injury at work;</li>
+<li><code class="language-xml">promotion_last_5years</code>: whether an employee has had any promotions during the last five years;</li>
+<li><code class="language-xml">Department</code>: an employee's department;</li>
+<li><code class="language-xml">salary</code>: an employee's salary rate;</li>
+<li><code class="language-xml">employee_office_id</code>: and employee's personal ID (1, 2, 3, etc.)</li>
+</ul>
+</li>
+<li><em>hr_data.xml</em>:
+	<ul>
+<li><code class="language-xml">satisfaction_level</code>: how well an employee performs their job;</li>
+<li><code class="language-xml">last_evaluation</code>: the last evaluation score of an employee;</li>
+<li><code class="language-xml">left</code>: whether an employee has left the company</li>
+<li><code class="language-xml">employee_id</code>: employee's ID in the company (<code class="language-xml">A125</code> — from the A office; <code class="language-xml">125</code> in this case, is <code class="language-xml">employee_office_id</code>)</li>
+</ul>
+</li>
+</ol>
+<p>We have automated the data download process in the <em>.py</em> file provided to you. However, if that is inconvenient, feel free to download the datasets: <a href="https://www.dropbox.com/s/jpeknyzx57c4jb2/A_office_data.xml?dl=1" rel="noopener noreferrer nofollow" target="_blank">A_office_data.xml</a>, <a href="https://www.dropbox.com/s/hea0tbhir64u9t5/B_office_data.xml?dl=1" rel="noopener noreferrer nofollow" target="_blank">B_office_data.xml</a>, and <a href="https://www.dropbox.com/s/u6jzqqg1byajy0s/hr_data.xml?dl=1" rel="noopener noreferrer nofollow" target="_blank">hr_data.xml</a>.</p>
+<h5 id="objectives">Objectives</h5>
+<p>In this stage, load the datasets, study, and reindex them.</p>
+<ol>
+<li>Load all three datasets. Remember, data is stored in the XML format. You can use the <code class="language-xml">read_xml()</code> function from <code class="language-xml">pandas</code>;</li>
+<li>Explore the data. Check what the axes are, get the shapes of the DataFrames, use <code class="language-xml">df.info()</code> to check whether there are null values, and overview the data types;</li>
+<li>Reindex all three datasets. It is required because some of the <code class="language-xml">employee_office_id</code> column values for offices A and B match. For HR data, use the <code class="language-xml">employee_id</code> column as the index. For A and B offices, use the name of the office and the <code class="language-xml">employee_office_id</code> column as indexes. For example, for office A, employee #125 will be <code class="language-xml">A125</code>. The offices' data index should resemble HR's data index.</li>
+<li>Print three Python lists containing office A, B, and HR data indexes.</li>
+</ol>
+<h5 id="example">Example</h5>
+<p><em>Before reindexing</em> <em>(most of the columns are omitted):</em></p>
+<ul>
+<li><em>A_office_data.xml</em>
+<pre><code class="language-no-highlight">      number_project  employee_office_id
+0                  5                   2
+1                  5                   4
+2                  2                   6
+3                  6                   7
+4                  5                   9</code></pre>
+</li>
+<li><em>B_office_data.xml</em>
+<pre><code class="language-no-highlight">      number_project  employee_office_id
+0                  6                   1
+1                  4                   3
+2                  5                   5
+3                  2                   6
+4                  3                  11</code></pre>
+</li>
+<li><em>hr_data.xml</em>
+<pre><code class="language-no-highlight">      satisfaction_level employee_id
+0                   0.38          A1
+1                   0.11          A3
+2                   0.72          A4
+3                   0.37          A5
+4                   0.10          A7</code></pre>
+</li>
+</ul>
+<p><em>After reindexing (most of the columns are omitted):</em></p>
+<ul>
+<li><em>A_office_data.xml</em>
+<pre><code class="language-no-highlight">       number_project  employee_office_id
+A2                  5                   2
+A4                  5                   4
+A6                  2                   6
+A7                  6                   7
+A9                  5                   9</code></pre>
+</li>
+<li><em>B_office_data.xml</em>
+<pre><code class="language-no-highlight">       number_project  employee_office_id
+B1                  6                   1
+B3                  4                   3
+B5                  5                   5
+B6                  2                   6
+B11                 3                  11</code></pre>
+</li>
+<li><em>hr_data.xml</em>
+<pre><code class="language-no-highlight">             satisfaction_level employee_id
+employee_id
+A1                         0.38          A1
+A3                         0.11          A3
+A4                         0.72          A4
+A5                         0.37          A5
+A7                         0.10          A7</code></pre>
+</li>
+</ul>
+<p><em>Output:</em></p>
+<pre><code class="language-no-highlight">['A2', 'A4', 'A6', 'A7', 'A9']
+['B1', 'B3', 'B5', 'B6', 'B11']
+['A1', 'A3', 'A4', 'A5', 'A7']</code></pre>
+</div>

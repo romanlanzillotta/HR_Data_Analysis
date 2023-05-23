@@ -1,0 +1,29 @@
+<div class="step-text">
+<h5 id="description">Description</h5>
+<p>The HR boss needs to know something about the employees. Find out the answers to the following questions:</p>
+<ol>
+<li>What are the departments of the top ten employees in terms of working hours? Output a Python list of values;</li>
+<li>What is the total number of projects on which IT department employees with low salaries have worked? Output a number;</li>
+<li>What are the last evaluation scores and the satisfaction levels of the employees <code class="java">A4</code>, <code class="java">B7064</code>, and <code class="java">A3033</code>? Output a Python list where each entry is a list of values of the last evaluation score and the satisfaction level of an employee. The data for each employee should be specified in the same order as the employees' IDs in the question above. Apply the <code class="java">.loc</code> method of pandas to answer the question!</li>
+</ol>
+<h5 id="objectives">Objectives</h5>
+<p>Steps 1-6 are the same as steps from the previous stage. This stage requires completing the following steps:</p>
+<ol>
+<li>Load all three datasets. Remember, data is stored in the <em>XML</em> format;</li>
+<li>Explore the data — check the axes, get the shapes of the DataFrames, use <code class="java">df.info()</code> to check whether there are null values and review the data types;</li>
+<li>Reindex all three datasets in the same way as in the previous stage;</li>
+<li>Use the <code class="java">concat()</code> function from <code class="java">pandas</code> to generate a unified dataset for offices A and B;</li>
+<li>Use <code class="java">df.merge()</code> to carry out the left merging of the unified office dataset with HR's dataset. Merge both datasets by index. For the final table, leave only those employees whose data is contained in both datasets. Set <code class="java">indicator=True</code> in <code class="java">df.merge()</code>;</li>
+<li>Drop the <code class="java">employee_office_id</code>, <code class="java">employee_id</code> columns and the column that contains a row source;</li>
+<li>Sort the final dataset by index;</li>
+<li>Answer the questions using the <code class="java">pandas</code> built-in methods. Before implementing a logic-intensive approach, we advise you to use Google. The chances are there is a ready-to-use method in <code class="java">pandas</code> that will solve the problem in one line.</li>
+<li>To finish the stage, print answers to the questions separated by a newline character ( <code class="java">\n</code>).</li>
+</ol>
+<h5 id="example">Example</h5>
+<p><em>Input data:</em></p>
+<p><em>The merged DataFrame from the previous stage.</em></p>
+<p><em>Output (the answer is for reference only; the actual values may differ):</em></p>
+<pre><code class="language-no-highlight">['hr', 'support', 'management', 'management', 'IT', 'sales', 'product_mng', 'product_mng', 'IT', 'technical']
+653
+[[0.65, 0.89], [0.72, 0.83], [0.55, 0.34]]</code></pre>
+</div>
